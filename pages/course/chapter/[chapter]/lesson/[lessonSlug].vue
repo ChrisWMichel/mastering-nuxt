@@ -1,6 +1,6 @@
 <template>
    <div>
-    <p class="mt-0 uppercase font-bold text-slate-400 mb-1 border shadow">
+    <p class="mt-0 uppercase font-bold text-slate-400 mb-1">
       Lesson {{ chapter.number }} - {{ lesson.number }}
     </p>
     <h2 class="my-0">{{ lesson.title }}</h2>
@@ -36,12 +36,22 @@
 
 
 <script setup>
+import { useCourse } from '@/composables/useCourse';
   const  course  =  useCourse();
 
 const route = useRoute();
 
 const chapter = computed(() => course.chapters.find(chapter => chapter.slug === route.params.chapter));
 const lesson = computed(() => chapter.value.lessons.find(lesson => lesson.slug === route.params.lessonSlug));
+
+
+
+if(!chapter.value || !lesson.value){
+  throw new Error({
+    statusCode: 404,
+    message: 'Chapter or lesson not found'
+  });
+}
 
 useHead({
   title: `${lesson.value.title} - ${course.title}`,

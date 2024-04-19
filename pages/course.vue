@@ -1,9 +1,8 @@
 <template>
-  <div
-    class="p-12 bg-gray-100 min-h-screen flex flex-col items-center justify-center"
-  >
-  <div class="prose mb-12">
-    <h1>
+  <div >
+    <!-- class="p-12 bg-gray-100 min-h-screen flex flex-col items-center justify-center" -->
+  <div class=" mb-12 flex flex-col items-center ">
+    <h1 class="text-4xl">
       <span class="font-medium">
         Course:
         <span class="font-bold" >Mastering Nuxt 3</span>
@@ -38,7 +37,18 @@
 
       <div dir="ltr">
         <div class="p-12 bg-white rounded-md w-full ">
-        <NuxtPage />
+          <NuxtErrorBoundary >
+            <NuxtPage />
+            <template #error="{ error }">
+              <div class="p-8 bg-red-100 text-red-800 rounded-md">
+                <h2 class="text-red-800">Oh no, something went wrong with the lesson!</h2>
+                <code>{{ error }}</code>
+              </div>
+              <button
+                class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md"
+                @click="resetError(error)">Reset</button>
+            </template>
+          </NuxtErrorBoundary>
       </div>
       </div>
     </div>
@@ -47,6 +57,16 @@
 
 <script setup>
 const { chapters } = useCourse();
+ const resetError = async (error) => {
+  // await navigateTo(
+  //   '/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3'
+  // )
+  //   error.value = null;
+  throw createError({
+    fatal: true,
+    message: 'An error occurred',
+  })
+  };
 </script>
 
 <style>
