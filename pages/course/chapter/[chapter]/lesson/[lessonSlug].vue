@@ -24,7 +24,7 @@
       v-if="lesson.videoId"
       :videoId="lesson.videoId"
     />
-    <p>{{ lesson.text }}</p>
+    <p class="mb-5">{{ lesson.text }}</p>
    
       <lessonCompleteBtn
       :model-value="isLessonComplete"
