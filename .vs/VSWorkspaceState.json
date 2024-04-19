@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\components",
+    "\\composables",
+    "\\pages",
+    "\\pages\\course",
+    "\\pages\\course\\chapter",
+    "\\pages\\course\\chapter\\[chapter]",
+    "\\pages\\course\\chapter\\[chapter]\\lesson"
+  ],
+  "SelectedNode": "\\pages\\course\\chapter\\[chapter]\\lesson\\[lessonSlug].vue",
+  "PreviewInSolutionExplorer": false
+}

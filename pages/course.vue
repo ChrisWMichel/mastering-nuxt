@@ -1,0 +1,42 @@
+<template>
+   <div class="flex flex-row justify-center flex-grow">
+      <div
+        class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] max-w-[30ch] flex flex-col"
+      >
+        <h3>Chapters</h3>
+        <div
+          class="space-y-1 mb-4 flex flex-col"
+          v-for="chapter in chapters"
+          :key="chapter.slug"
+        >
+          <h4>{{ chapter.title }}</h4>
+          <NuxtLink
+            v-for="(lesson, index) in chapter.lessons"
+            :key="lesson.slug"
+            class="flex flex-row space-x-1 no-underline prose-sm font-normal py-1 px-4 -mx-4 text-gray-600"
+            exact-active-class="!text-blue-500"
+            :to="lesson.path"
+          >
+            <span class="text-gray-500"
+              >{{ index + 1 }}.</span
+            >
+            <span>{{ lesson.title }}</span>
+          </NuxtLink>
+        </div>
+      </div>
+
+      <div dir="ltr">
+        <div class="prose p-12 bg-white rounded-md w-full border-s-4 container">
+        <NuxtPage />
+    </div>
+      </div>
+  </div>
+</template>
+
+<script setup>
+const { chapters } = useCourse();
+</script>
+
+<style>
+
+</style>
