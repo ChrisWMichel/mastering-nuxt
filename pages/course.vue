@@ -1,14 +1,14 @@
 <template>
-  <div >
-    <!-- class="p-12 bg-gray-100 min-h-screen flex flex-col items-center justify-center" -->
-  <div class=" mb-12 flex flex-col items-center ">
-    <h1 class="text-4xl">
-      <span class="font-medium">
-        Course:
-        <span class="font-bold" >Mastering Nuxt 3</span>
-      </span>
-    </h1>
-  </div>
+  <div>
+    <div class="mb-4 flex flex-row justify-between items-center w-full">
+      <h1 class="text-4xl">
+        <span class="font-medium">
+          Course:
+          <span class="font-bold" >{{ title }}</span>
+        </span>
+      </h1>
+      <UserCard />
+    </div>
    <div class="flex flex-row justify-center flex-grow">
       <div
         class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] max-w-[30ch] flex flex-col"
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-const { chapters } = useCourse();
+const { chapters, title } = useCourse();
  const resetError = async (error) => {
   // await navigateTo(
   //   '/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3'
