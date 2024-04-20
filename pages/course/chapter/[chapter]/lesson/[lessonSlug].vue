@@ -3,7 +3,7 @@
     <p class="mt-0 uppercase font-bold text-slate-400 mb-1">
       Lesson {{ chapter.number }} - {{ lesson.number }}
     </p>
-    <h2 class="my-0">{{ lesson.title }}</h2>
+    <h2 class="my-0 text-lg font-bold">{{ lesson.title }}</h2>
     <div class="flex space-x-4 mt-2 mb-8">
       <NuxtLink
         v-if="lesson.sourceUrl"
@@ -35,33 +35,38 @@
 </template>
 
 
-<script setup>
-import { useCourse } from '@/composables/useCourse';
-  const  course  =  useCourse();
-
+<script setup>  
+const  course  =  useCourse();
 const route = useRoute();
 
-const chapter = computed(() => course.chapters.find(chapter => chapter.slug === route.params.chapter));
-const lesson = computed(() => chapter.value.lessons.find(lesson => lesson.slug === route.params.lessonSlug));
 
-
-
-if(!chapter.value || !lesson.value){
-  throw new Error({
-    statusCode: 404,
-    message: 'Chapter or lesson not found'
-  });
-}
-
-useHead({
-  title: `${lesson.value.title} - ${course.title}`,
-  meta: [
-    {
-      name: 'description',
-      content: lesson.value.text,
-    },
-  ],
+definePageMeta({
+  middleware:[
+    'auth'
+  ]
 });
+
+      
+      const chapter = computed(() => course.chapters.find(chapter => chapter.slug === route.params.chapter));
+      const lesson = computed(() => chapter.value.lessons.find(lesson => lesson.slug === route.params.lessonSlug));
+
+      if(!chapter.value || !lesson.value){
+         abortNavigation(
+            createError({
+            statusCode: 404,
+            message: 'Chapter or lesson not found'
+          })
+        );
+      }
+    useHead({
+      title: `${lesson.value.title} - ${course.title}`,
+      meta: [
+        {
+          name: 'description',
+          content: lesson.value.text,
+        },
+      ],
+    });
 
 const progress = useLocalStorage('progress', []);
 
