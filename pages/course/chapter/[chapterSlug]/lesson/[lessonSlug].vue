@@ -47,7 +47,7 @@ definePageMeta({
 });
 
       
-      const chapter = computed(() => course.chapters.find(chapter => chapter.slug === route.params.chapter));
+      const chapter = computed(() => course.chapters.find(chapter => chapter.slug === route.params.chapterSlug));
       const lesson = computed(() => chapter.value.lessons.find(lesson => lesson.slug === route.params.lessonSlug));
 
       if(!chapter.value || !lesson.value){
