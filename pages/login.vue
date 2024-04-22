@@ -1,6 +1,6 @@
 <template>
   <div class="prose w-full max-w-2xl">
-    <h1>Log into {{ title }}</h1>
+    <h1>Log into {{ course.title }}</h1>
     <button 
       class="bg-blue-500 text-white px-4 py-2 rounded"
       @click="login"
@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-const { title } = useCourse();
+const course = await useCourse();
 const supabase = useSupabaseClient();
 const { query } = useRoute();
 const user = useSupabaseUser();

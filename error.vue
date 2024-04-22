@@ -17,7 +17,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 const error = useError();
 
 

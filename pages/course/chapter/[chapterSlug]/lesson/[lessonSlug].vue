@@ -36,10 +36,11 @@
 
 
 <script setup>  
-const  course  =  useCourse();
+const  course  = await useCourse();
 const route = useRoute();
-
-
+const { chapterSlug, lessonSlug } = route.params;
+const lesson = await useLesson(chapterSlug, lessonSlug);
+              
 definePageMeta({
   middleware:[
     'auth'
@@ -47,26 +48,21 @@ definePageMeta({
 });
 
       
-      const chapter = computed(() => course.chapters.find(chapter => chapter.slug === route.params.chapterSlug));
-      const lesson = computed(() => chapter.value.lessons.find(lesson => lesson.slug === route.params.lessonSlug));
+  const chapter = computed(() => course.value.chapters.find(chapter => chapter.slug === route.params.chapterSlug));
 
-      if(!chapter.value || !lesson.value){
-         abortNavigation(
-            createError({
-            statusCode: 404,
-            message: 'Chapter or lesson not found'
-          })
-        );
-      }
-    useHead({
-      title: `${lesson.value.title} - ${course.title}`,
-      meta: [
-        {
-          name: 'description',
-          content: lesson.value.text,
-        },
-      ],
-    });
+  if(!chapter.value || !lesson.value){
+      abortNavigation(
+        createError({
+        statusCode: 404,
+        message: 'Chapter or lesson not found'
+      })
+    );
+  }
+const title = computed(() => `${lesson.value.title} - ${course.value.title}`);
+
+useHead({
+  title,
+});
 
 const progress = useLocalStorage('progress', []);
 

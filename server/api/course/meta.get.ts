@@ -1,26 +1,7 @@
-import { Lesson, LessonWithPath, Chapter, Course } from "~/types/course";
+import { Lesson, LessonWithPath, Chapter, Course, CourseMeta, OutlineChapter, OutlineLesson, OutlineBase } from "~/types/course";
 import course from "~/server/courseData";
 
 course as Course;
-
-type OutlineBase = {
-    title: string;
-    slug: string;
-    number: number;
-};
-
-type OutlineChapter = OutlineBase & {
-    lessons: Lesson[] | LessonWithPath[];
-};
-
-type OutlineLesson = OutlineBase & {
-    path: string;
-};
-
-type CourseMeta = {
-    title: string;
-    chapters: OutlineChapter[];
-};
 
 export default defineEventHandler((event): CourseMeta => {
     
