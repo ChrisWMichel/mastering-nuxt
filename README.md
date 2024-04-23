@@ -1,75 +1,24 @@
-# Nuxt 3 Minimal Starter
+# Mastering Nuxt
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
+## This is a tutorial app that consist of courses, chapters, and lessons
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+dependencies:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+- Github OAuth
+- Supabase DB, OAuth
+- TailwindCss
+- Prisma
 ```
 
-## Production
+## This project is on hold
 
-Build the application for production:
 
 ```bash
-# npm
-npm run build
+I am not able to resolve the following issue:
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+warn Versions of prisma@5.13.0 and @prisma/client@2.30.0 don't match.
 ```
 
-Locally preview production build:
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
